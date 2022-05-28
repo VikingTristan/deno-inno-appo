@@ -1,0 +1,46 @@
+
+
+html {
+    /* height: 100% */
+}
+
+body {
+    background: linear-gradient(126deg, #112e31, #353535, #001715);
+}
+
+main {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    margin-top: 80px;
+    color: #00ffa6;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+}
+
+.h1-big-boi {
+    font-size: 5em;
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+#container img {
+    max-width: 470px;
+    margin-bottom: 20px;
+}
+
+.innovation-day {
+    padding: 40px;
+    margin-bottom: 40px;
+    background-color: #0f2f2d;
+    width: 530px;
+    box-shadow: 10px 10px 42px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 42px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 42px 0px rgba(0,0,0,0.75);
+}

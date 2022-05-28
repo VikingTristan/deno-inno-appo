@@ -1,2 +1,2 @@
 # deno-inno-appo
-Deno app serving a simple web app with a brief summary of innovation days
+Deno server serving a simple web page that queries the deno server API for innovation days.
