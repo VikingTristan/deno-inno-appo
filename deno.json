@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "check": "deno check --frozen src/server/main.ts",
+    "start": "deno run --frozen --cached-only --allow-net --allow-read=src/client src/server/main.ts"
+  }
+}
