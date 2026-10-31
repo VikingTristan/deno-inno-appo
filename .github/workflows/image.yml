@@ -18,12 +18,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          docker run --rm -d --name innovation-test -p 127.0.0.1:38177:3000 innovation-test:${{ github.sha }}
+          docker run --rm -d --read-only --cap-drop=ALL --security-opt=no-new-privileges --pids-limit=128 --name innovation-test -p 127.0.0.1:38177:3000 innovation-test:${{ github.sha }}
           trap 'docker logs innovation-test || true; docker stop innovation-test || true' EXIT
           for attempt in {1..30}; do
             if curl -fsS http://127.0.0.1:38177/api >/dev/null; then break; fi
             sleep 1
           done
+          docker exec innovation-test deno eval "const r = await fetch('http://127.0.0.1:3000/api'); if (!r.ok) Deno.exit(1)"
           curl -fsS http://127.0.0.1:38177/ >/dev/null
           curl -fsS http://127.0.0.1:38177/images/es6.gif >/dev/null
           curl -fsS http://127.0.0.1:38177/api/innovation-days | python3 -c 'import json,sys; data=json.load(sys.stdin); assert isinstance(data,list) and len(data)>0'
