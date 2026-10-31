@@ -1,4 +1,4 @@
-import { Application, Router } from "https://deno.land/x/oak@v10.6.0/mod.ts";
+import { Application, Router } from "jsr:@oak/oak@17.2.0";
 import { innovationDays } from "./data.ts"
 const port = 3000;
 

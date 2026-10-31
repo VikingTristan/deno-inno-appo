@@ -1,16 +1,10 @@
-FROM denoland/deno:alpine
-
-# The port that your application listens to.
-EXPOSE 3000
-
+# Deno 2.9.8, pinned to the official multi-platform image digest.
+FROM denoland/deno:2.9.8@sha256:a0d88a7fcbd44f062cba2748e19df67d30290ad12aa203c7c1e0b12462c483f0
+LABEL org.opencontainers.image.source="https://github.com/VikingTristan/deno-inno-appo"
 WORKDIR /app
-
-# Prefer not to run as root.
+COPY --chown=deno:deno deno.json deno.lock ./
+COPY --chown=deno:deno src ./src
 USER deno
-
-# These steps will be re-run upon each file change in your working directory:
-ADD . .
-# Compile the main app so that it doesn't need to be compiled each startup/entry.
-RUN deno cache ./src/server/main.ts
-
-CMD ["run", "--allow-net", "--allow-read", "src/server/main.ts"]
+RUN deno install --entrypoint --frozen-lockfile src/server/main.ts
+EXPOSE 3000
+CMD ["task", "start"]
